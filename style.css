@@ -7,49 +7,64 @@
 body{
     margin: 0;
     font-family: "poppins", sans-serif;
-    color: #fff;
-    background-image:url(/bg_Image.jpg);
+    background-color: #b3cdd1;
+    background-image: linear-gradient(315deg, #b3cdd1 0%, #9fa4c4 100%);
     background-size: cover;
-    background-position: center;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
+}
+.quiz-container{
+    background-color: #fff;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+
 }
 
-h1{
-    font-size: 4rem;
-    /* margin-top: 10rem; */
-    font-weight: normal;
-    margin-top: 2rem;
+.quiz-header{
+    padding: 4rem;
+}
+ul{
+    list-style-type: none;
+    padding: 0;
+}
+ul li{
+    font-size: 1.1rem;
+    margin: 0; 
+  
+}
+ul li label{
+    cursor: pointer;
+}
+
+h2{
+    padding: 1rem;
     text-align: center;
+    margin: 0;
+}
+
+
+button{
+    background-color: royalblue;
+    color: #fff;
+    display: block;
+    font-family: inherit;
+    font-size: 1.1rem;
+    padding: 1rem;
+    border: none;
+    width: 100%;
+    border-radius: 0px 0px 10px 10px;
+}
+
+button:hover{
+    background-color: rgb(65, 101, 207);
+    cursor: pointer;
 
 }
 
-.countdown-container{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
 
-.big-text{
-    font-size: 6rem;
-    line-height: 1;
-    margin: 0 2rem ;
-
-}
-
-.countdown-el{
-    text-align: center;
-}
-
-.countdown-el span{
-    font-size: 2rem;
-    text-transform: uppercase;
-    
-}
 
 

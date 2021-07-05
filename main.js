@@ -1,34 +1,113 @@
-daysE1 = document.getElementById("days");
-hoursE1 = document.getElementById("hours");
-minsE1 = document.getElementById("mins");
-secondsE1 = document.getElementById("seconds");
+const quizData = [
+
+    
+    {
+        question: 'Indipendent Day of Bangladesh',
+        a: '16 December',
+        b: '21 February',
+        c: '10 April',
+        d: '26 March',
+        correct: 'd'
+    },
+
+    {
+        question: 'What is the official Name on BD? ',
+        a: 'Repablic of Bangladesh',
+        b: 'Bangladesh',
+        c: 'Peoples Republic of Bangladesh',
+        d: 'BD Country',
+        correct: 'c'
+    },
+
+    {
+        question: 'National Anthem writer',
+        a: 'Rabindranath Tagor',
+        b: 'Kazi Nazrul Islam',
+        c: 'Jasim Uddin',
+        d: 'Shek Mujibur Rahman',
+        correct: 'a'
+    },
+
+    {
+        question: 'Name of president of bangladesh?',
+        a: 'Shek Hasina',
+        b: 'Abdul Hamid',
+        c: 'Khaleda Zia',
+        d: 'Jillur Pahman',
+        correct: 'b'
+    },
+    
+    {
+        question: 'Currency name of bangladesh?',
+        a: 'Bangladeshi Taka',
+        b: 'bangladeshi USD',
+        c: 'bangladeshi Rupi',
+        d: 'Tk',
+        correct: 'a'
+    },
 
 
-const newYears = "1 jan 2022";
+]
 
-function countdown() {
+const quiz = document.getElementById("quiz");
+const answerEls = document.querySelectorAll(".answer");
+const questionEl = document.getElementById("question");
+const a_text = document.getElementById("a_text");
+const b_text = document.getElementById("b_text");
+const c_text = document.getElementById("c_text");
+const d_text = document.getElementById("d_text");
+const submitBtn = document.getElementById("submit");
 
-    const newYearDate = new Date (newYears);
-    const currentDate = new Date();
-    const totalSeconds = (newYearDate - currentDate) / 1000;
+let currentQuiz = 0;
+let score = 0;
 
-    const days = Math.floor(totalSeconds / 3600 / 24);
-    const hours = Math.floor(totalSeconds / 3600) % 24;
-    const mins = Math.floor(totalSeconds/ 60) % 60;
-    const seconds = Math.floor(totalSeconds) % 60;
+loadQuiz();
 
-    daysE1.innerHTML = days;
-    hoursE1.innerHTML = hours;
-    minsE1.innerHTML = mins;
-    secondsE1.innerHTML = seconds;
+function loadQuiz() {
+    deselectAnswers();
+
+    const currentQuizData = quizData[currentQuiz];
+
+    questionEl.innerText = currentQuizData.question;
+    a_text.innerText = currentQuizData.a;
+    b_text.innerText = currentQuizData.b;
+    c_text.innerText = currentQuizData.c;
+    d_text.innerText = currentQuizData.d;
 }
 
+function getSelected() {
+    let answer = undefined;
 
+    answerEls.forEach((answerEl) => {
+        if (answerEl.checked) {
+            answer = answerEl.id;
+        }
+    });
 
+    return answer;
+}
 
+function deselectAnswers() {
+    answerEls.forEach((answerEl) => {
+        answerEl.checked = false;
+    });
+}
 
+submitBtn.addEventListener("click", () => {
+    // check to see the answer
+    const answer = getSelected();
 
-// initial Call
-countdown();
+    if (answer) {
+        if (answer === quizData[currentQuiz].correct) {
+            score++;
+        }
 
-setInterval(countdown, 1000);
+        currentQuiz++;
+        if (currentQuiz < quizData.length) {
+            loadQuiz();
+        } else {
+            quiz.innerHTML = `<h2>You answered correctly at ${score}/${quizData.length} questions.</h2>
+                <button onclick="location.reload()">Reload</button>`;
+        }
+    }
+});
